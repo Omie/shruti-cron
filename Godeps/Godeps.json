@@ -1,0 +1,43 @@
+{
+	"ImportPath": "github.com/omie/shruti-cron",
+	"GoVersion": "go1.5",
+	"Deps": [
+		{
+			"ImportPath": "github.com/docker/docker/pkg/units",
+			"Comment": "v1.4.1-6164-g611dbd8",
+			"Rev": "611dbd8957581fa451a4103259100a5e2d115b8c"
+		},
+		{
+			"ImportPath": "github.com/gorilla/context",
+			"Rev": "1c83b3eabd45b6d76072b66b746c20815fb2872d"
+		},
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Rev": "ee1815431e497d3850809578c93ab6705f1a19f7"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-colorable",
+			"Rev": "40e4aedc8fabf8c23e040057540867186712faa5"
+		},
+		{
+			"ImportPath": "github.com/mattn/go-isatty",
+			"Rev": "7fcbc72f853b92b5720db4a6b8482be612daef24"
+		},
+		{
+			"ImportPath": "github.com/mgutz/ansi",
+			"Rev": "452f5f5396543168418a299cd963697ac742b56e"
+		},
+		{
+			"ImportPath": "github.com/mgutz/logxi/v1",
+			"Rev": "9d4665fdca59ce7456eee0a85d9bb7e853734259"
+		},
+		{
+			"ImportPath": "github.com/omie/dockeron",
+			"Rev": "e9b6579dbcf1a384123ca2baa3df186c1f239ca9"
+		},
+		{
+			"ImportPath": "github.com/samalba/dockerclient",
+			"Rev": "cfb489c624b635251a93e74e1e90eb0959c5367f"
+		}
+	]
+}
