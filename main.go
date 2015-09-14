@@ -2,6 +2,7 @@ package main // import "github.com/omie/shruti-cron"
 
 import (
 	"os"
+	"time"
 
 	"github.com/mgutz/logxi/v1"
 	"github.com/omie/dockeron"
@@ -20,6 +21,13 @@ func main() {
 	cronLogger = log.NewLogger(log.NewConcurrentWriter(os.Stdout), "[shruti-cron]")
 	cronLogger.SetLevel(log.LevelAll)
 
+	host := os.Getenv("SHRUTI_CRON_HOST")
+	port := os.Getenv("SHRUTI_CRON_PORT")
+	if host == "" || port == "" {
+		cronLogger.Error("main: host or port not set")
+		return
+	}
+
 	files, err := getConfFiles(CONF_DIR, CONF_EXT)
 	if err != nil {
 		cronLogger.Error("err getting conf files: ", err)
@@ -33,10 +41,16 @@ func main() {
 	}
 	cronLogger.Debug("parsed config:", jobs)
 
-	dockeron.StartJobs(jobs)
+	go func() {
+		// wait until other containers are up
+		// there should be a much better solution,
+		// hack prevails
+		time.Sleep(1 * time.Minute)
+		dockeron.StartJobs(jobs)
+	}()
 
 	cronLogger.Info("Attempting to start HTTP server")
-	err = StartHTTPServer("127.0.0.1", "9577")
+	err = StartHTTPServer(host, port)
 	if err != nil {
 		cronLogger.Error("Error starting server", err)
 	}
